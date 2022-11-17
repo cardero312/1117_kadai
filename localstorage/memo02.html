@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>myMemoPad中級</title>
+  <link rel="stylesheet" href="css/sample.css">
+</head>
+
+<body>
+  <header>
+    <h1>MemoPad中級編</h1>
+  </header>
+
+  <main>
+    <input type="text" id="input">
+    <textarea id="text_area"></textarea>
+    <ul>
+      <li id="save">Save</li>
+      <li id="clear">Clear</li>
+    </ul>
+  </main>
+
+  <footer>
+    <small>G's</small>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+
+    // 保存
+    $("#save").on("click", function () {
+      const title = $("#input").val();
+      const text = $("#text_area").val();
+      const data = { title: title, text: text };
+      console.log(data)
+
+      const jsonData = JSON.stringify(data);
+      console.log(jsonData)
+      localStorage.setItem("memo", jsonData);
+
+    });
+
+    // 削除
+    $("#clear").on("click", function () {
+      const title = $("#input").val();
+      const text = $("#text_area").val();
+      const data = { title: title, text: text };
+
+      const jsonData = JSON.stringify(data);
+      localStorage.removeItem("memo", jsonData);
+    });
+
+
+    // 読込
+    if (localStorage.getItem("memo")) {
+      const text = localStorage.getItem("memo");
+      $("#text_area").val(text);
+      const data = JSON.parse(jsonData)
+
+    }
+
+  </script>
+
+</body>
+
+</html>

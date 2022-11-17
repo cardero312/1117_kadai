@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>賞味期限管理</title>
+</head>
+
+
+<head></head>
+
+<body>
+    <table id="table" border="1" cellpadding="10">
+        <tr>
+            <th>JAN</th>
+            <th>商品名</th>
+            <th>賞味期限</th>
+            <th>入荷個数</th>
+        </tr>
+        <tr>
+            <td id="A1">
+                <input type="text" id="inputA1" value="">
+            </td>
+            <td id="A2">
+                <input type="text" id="inputA2" value="">
+            </td>
+            <td id="A3">
+                <input type="text" id="inputA3" value="">
+            </td>
+            <td id="A4">
+                <input type="text" id="inputa4" value="">
+            </td>
+        </tr>
+        <tr>
+            <td id="B1">
+                <input style="font-size: 16px;" value="">
+            </td>
+            <td id="B2">
+                <input style="font-size: 16px;" value="">
+            </td>
+            <td id="B3">
+                <input style="font-size: 16px;" value="">
+            </td>
+            <td id="B4">
+                <input style="font-size: 16px;" value="">
+            </td>
+        </tr>
+        <tr>
+            <td id="C1">
+                <input style="font-size: 16px;" value="">
+            </td>
+            <td id="C2">
+                <input style="font-size: 16px;" value="">
+            </td>
+            <td id="C3">
+                <input style="font-size: 16px;" value="">
+            </td>
+            <td id="C4">
+                <input style="font-size: 16px;" value="">
+            </td>
+        </tr>
+    </table>
+
+    <ul>
+        <li id="save">Save</li>
+        <li id="clear">Clear</li>
+    </ul>
+</body>
+
+</html>
+
+
+<script>
+    $("#save").on("click", function () {
+        const text1 = $("#inputA1").val();
+        const text2 = $("#inputA2").val();
+        consol.log(text1)
+        // const text1 = $("#A1").val();
+        // const text2 = $("#A2").val();
+        // const text5 = $("#A5").val();
+        const data = { text1: text1, text2: text2, };
+        console.log(text1)
+
+    });
+
+    // function getTableData() {
+    //     // 抽出したデータを格納する配列
+    //     let data = [];
+    //     // idでhtmlからtableの要素を取得し、trタグのNodeListを取得
+    //     let table = document.getElementById('table');
+    //     let tbl_tr = table.querySelectorAll('tr');
+    //     //テーブルの1行(trタグ)毎に処理
+    //     tbl_tr.forEach(function (tr) {
+    //         //tdタグのNodeListを取得
+    //         //テーブルのヘッダー部分は飛ばす
+    //         if (cells.length != 0) {
+    //             // テーブルの1行(trタグ)のデータを格納する配列
+    //             let d = [];
+    //             //セル(tdタグ)毎に処理
+    //             cells.forEach(function (td) {
+    //                 //セルがinputタグだった場合
+    //                 if (td.innerHTML.indexOf('input') != -1) {
+    //                     d.push(td.firstElementChild.value);
+    //                 }
+    //                 //セルがtextだった場合
+    //                 else if (td.textContent != "") {
+    //                     d.push(td.textContent);
+    //                 }
+    //                 //セルが空白だった場合
+    //                 else {
+    //                     d.push("");
+    //                 }
+    //             });
+    //             data.push(d);
+    //         }
+    //     });
+    //     return data
+    // }
+
+
+</script>
