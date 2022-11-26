@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 
     <title>賞味期限管理</title>
 </head>
@@ -15,6 +16,8 @@
         <h1>賞味期限管理</h1>
     </header>
     <main>
+
+        <p id="date"></p>
 
         <table>
             <tr class="header">
@@ -30,7 +33,10 @@
                 <td class="value1" id="A1" contenteditable=true></td>
                 <td class="value1" id="A2" contenteditable=true></td>
                 <td class="value1" id="A3" contenteditable=true></td>
-                <td class="value1" id="A4" contenteditable=true></td>
+                <!-- <td class="value1" contenteditable=true><input type="text" id="datepicker">
+                </td> -->
+                <td class="value1"><input type="text" id="A4">
+                </td>
                 <td class="value1" id="A5" contenteditable=true></td>
             </tr>
             <tr>
@@ -38,7 +44,7 @@
                 <td class="value1" id="B1" contenteditable=true></td>
                 <td class="value1" id="B2" contenteditable=true></td>
                 <td class="value1" id="B3" contenteditable=true></td>
-                <td class="value1" id="B4" contenteditable=true></td>
+                <td class="value1"><input type="text" id="B4"></td>
                 <td class="value1" id="B5" contenteditable=true></td>
             </tr>
             <tr>
@@ -46,26 +52,50 @@
                 <td class="value1" id="C1" contenteditable=true></td>
                 <td class="value1" id="C2" contenteditable=true></td>
                 <td class="value1" id="C3" contenteditable=true></td>
-                <td class="value1" id="C4" contenteditable=true></td>
+                <td class="value1"><input type="text" id="C4"></td>
                 <td class="value1" id="C5" contenteditable=true></td>
+            </tr>
+            <tr>
+                <td class="item1">4</td>
+                <td class="value1" id="D1" contenteditable=true></td>
+                <td class="value1" id="D2" contenteditable=true></td>
+                <td class="value1" id="D3" contenteditable=true></td>
+                <td class="value1"><input type="text" id="D4"></td>
+                <td class="value1" id="D5" contenteditable=true></td>
+            </tr>
+            <tr>
+                <td class="item1">5</td>
+                <td class="value1" id="E1" contenteditable=true></td>
+                <td class="value1" id="E2" contenteditable=true></td>
+                <td class="value1" id="E3" contenteditable=true></td>
+                <td class="value1"><input type="text" id="E4"></td>
+                <td class="value1" id="E5" contenteditable=true></td>
             </tr>
 
         </table>
 
-        <div class="register-box" id="js-add-form">
+        <!-- <input type="text" id="datepicker"> -->
 
+
+        <div id=button_table>
+            <button id="select_button1">
+                <li id="save">Save</li>
+            </button>
+            <button id="select_button2">
+                <li id="clear">Clear</li>
+            </button>
         </div>
+        <div id="kigen">
+            <p id="kigen_text">賞味期限近いよ！！</p>
+        </div>
+        <textarea id="text_area"></textarea>
 
-        <!-- <div id="mytable"></div> -->
 
-        <!-- <input type="text" id="input">
-        <input id="js-todo-ttl" type="text" placeholder="タイトル" maxlength="25">
-        <button id="js-register-btn">登録する</button>
-        <textarea id="text_area"></textarea> -->
-        <ul>
-            <li id="save">Save</li>
-            <li id="clear">Clear</li>
-        </ul>
+        <!-- <!-- <div id="" <p>賞味期限まであと<span id="myFormDate"></span>日です。
+            セール処理を！</p> -->
+        <!-- <input type="button" value=#a1 "の賞味期限は?" onclick="alert( myFormDate(2016,12,31) );">
+        <input type="button" value="今日から2022年12月31日までの日数は？" onclick="alert( myFormDate(2022,12,31) );">
+        <input type="button" value="今日から2023年1月31日までの日数は？" onclick="alert( myFormDate(2023,1,30) );"> --> -->
 
     </main>
 
@@ -73,8 +103,26 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
+
+
+
+    $(function () {
+        var now = new Date();
+        var y = now.getFullYear();
+        var m = now.getMonth() + 1;
+        var d = now.getDate();
+
+        $("#date").text(y + "年" + m + "月" + d + "日");
+    });
+
+    $("#A4").datepicker({ dateFormat: "yy/mm/dd", });
+    $("#B4").datepicker({ dateFormat: "yy/mm/dd", });
+    $("#C4").datepicker({ dateFormat: "yy/mm/dd", });
+    $("#D4").datepicker({ dateFormat: "yy/mm/dd", });
+    $("#E4").datepicker({ dateFormat: "yy/mm/dd", });
+
 
 
     // 保存
@@ -82,13 +130,44 @@
         const text1 = $("#A1")[0].innerText;//a1セルのテキスト出力
         const text2 = $("#A2")[0].innerText;//a2セルのテキスト出力
         const text3 = $("#A3")[0].innerText;//a3セルのテキスト出力
-        const text4 = $("#A4")[0].innerText;//a4セルのテキスト出力
+        const text4 = $("#A4").val();//a4セルのテキスト出力
+        // const text4 = $("#A4")[0].innerText;//a4セルのテキスト出力
         const text5 = $("#A5")[0].innerText;//a5セルのテキスト出力
-        const data = { text1: text1, text2: text2, text3: text3, text4: text4, text5: text5 };
-        console.log(text1, text2, text3, text4, text5)
+        const text6 = $("#B1")[0].innerText;//b1セルのテキスト出力
+        const text7 = $("#B2")[0].innerText;//b2セルのテキスト出力
+        const text8 = $("#B3")[0].innerText;//b3セルのテキスト出力
+        const text9 = $("#B4").val();//b4セルのテキスト出力
+        const text10 = $("#B5")[0].innerText;//b5セルのテキスト出力
+        const text11 = $("#C1")[0].innerText;//c1セルのテキスト出力
+        const text12 = $("#C2")[0].innerText;//c2セルのテキスト出力
+        const text13 = $("#C3")[0].innerText;//c3セルのテキスト出力
+        const text14 = $("#C4").val();//C4セルのテキスト出力
+        const text15 = $("#C5")[0].innerText;//5セルのテキスト出力
+        const text16 = $("#D1")[0].innerText;//d1セルのテキスト出力
+        const text17 = $("#D2")[0].innerText;//d2セルのテキスト出力
+        const text18 = $("#D3")[0].innerText;//d3セルのテキスト出力
+        const text19 = $("#D4").val();//d4セルのテキスト出力
+        const text20 = $("#D5")[0].innerText;//d5セルのテキスト出力
+        const text21 = $("#E1")[0].innerText;//e1セルのテキスト出力
+        const text22 = $("#E2")[0].innerText;//e2セルのテキスト出力
+        const text23 = $("#E3")[0].innerText;//e3セルのテキスト出力
+        const text24 = $("#E4").val();//e4セルのテキスト出力
+        const text25 = $("#E5")[0].innerText;//e5セルのテキスト出力
+
+
+        const data = {
+            text1: text1, text2: text2, text3: text3, text4: text4, text5: text5,
+            text6: text6, text7: text7, text8: text8, text9: text9, text10: text10,
+            text11: text11, text12: text12, text13: text13, text14: text14, text15: text15,
+            text16: text16, text17: text17, text18: text18, text19: text19, text20: text20,
+            text21: text21, text22: text23, text24: text24, text25: text25
+
+        };
+        // console.log(text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12, text13, text14, text15,
+        //     text16, text17, text18, text19, text20, text21, text22, text23, text24, text25)
 
         const jsonData = JSON.stringify(data);
-        console.log(jsonData)
+        // console.log(jsonData)
         localStorage.setItem("memo", jsonData);
 
     });
@@ -96,54 +175,119 @@
 
     // 削除
     $("#clear").on("click", function () {
-        const text1 = $("#A1")[0].innerText;
-        const text2 = $("#A2")[0].innerText;
-        const text3 = $("#A3")[0].innerText;
-        const text4 = $("#A4")[0].innerText;
-        const text5 = $("#A5")[0].innerText;
-        const data = { text1: text1, text2: text2, text3: text3, text4: text4, text5: text5 };
-        console.log(text1, text2, text3, text4, text5)
+        const text1 = $("#A1")[0].innerText;//a1セルのテキスト出力
+        const text2 = $("#A2")[0].innerText;//a2セルのテキスト出力
+        const text3 = $("#A3")[0].innerText;//a3セルのテキスト出力
+        const text4 = $("#A4").val();//a4セルのテキスト出力
+        // const text4 = $("#A4")[0].innerText;//a4セルのテキスト出力
+        const text5 = $("#A5")[0].innerText;//a5セルのテキスト出力
+        const text6 = $("#B1")[0].innerText;//b1セルのテキスト出力
+        const text7 = $("#B2")[0].innerText;//b2セルのテキスト出力
+        const text8 = $("#B3")[0].innerText;//b3セルのテキスト出力
+        const text9 = $("#B4").val();//b4セルのテキスト出力
+        const text10 = $("#B5")[0].innerText;//b5セルのテキスト出力
+        const text11 = $("#C1")[0].innerText;//c1セルのテキスト出力
+        const text12 = $("#C2")[0].innerText;//c2セルのテキスト出力
+        const text13 = $("#C3")[0].innerText;//c3セルのテキスト出力
+        const text14 = $("#C4").val();//C4セルのテキスト出力
+        const text15 = $("#C5")[0].innerText;//5セルのテキスト出力
+        const text16 = $("#D1")[0].innerText;//d1セルのテキスト出力
+        const text17 = $("#D2")[0].innerText;//d2セルのテキスト出力
+        const text18 = $("#D3")[0].innerText;//d3セルのテキスト出力
+        const text19 = $("#D4").val();//d4セルのテキスト出力
+        const text20 = $("#D5")[0].innerText;//d5セルのテキスト出力
+        const text21 = $("#E1")[0].innerText;//e1セルのテキスト出力
+        const text22 = $("#E2")[0].innerText;//e2セルのテキスト出力
+        const text23 = $("#E3")[0].innerText;//e3セルのテキスト出力
+        const text24 = $("#E4").val();//e4セルのテキスト出力
+        const text25 = $("#E5")[0].innerText;//e5セルのテキスト出力
 
+        const data = {
+            text1: text1, text2: text2, text3: text3, text4: text4, text5: text5,
+            text6: text6, text7: text7, text8: text8, text9: text9, text10: text10,
+            text11: text11, text12: text12, text13: text13, text14: text14, text15: text15,
+            text16: text16, text17: text17, text18: text18, text19: text19, text20: text20,
+            text21: text21, text22: text23, text24: text24, text25: text25
+        };
+        console.log(text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11, text12, text13, text14, text15,
+            text16, text17, text18, text19, text20, text21, text22, text23, text24, text25)
 
         const jsonData = JSON.stringify(data);
         localStorage.removeItem("memo", jsonData);
     });
 
-
-    // 読込
+    console.log("ここから下確認");
+    // //配列・オブジェクトに戻す方法
     if (localStorage.getItem("memo")) {
-        const text = localStorage.getItem("memo");
-        const text1 = $("#A1")[0].innerText;
-        const text2 = $("#A2")[0].innerText;
-        const text3 = $("#A3")[0].innerText;
-        const text4 = $("#A4")[0].innerText;
-        const text5 = $("#A5")[0].innerText;
+        const jsonData = localStorage.getItem("memo");
+        const data = JSON.parse(jsonData);
+        console.log(jsonData)
+        const alldata = data.text1 + data.text2 + data.text3 + data.text4 + data.text5 + data.text6 + data.text7 + data.text8 + data.text9 + data.text10 + data.text11 + data.text12 + data.text13;
+        // console.log(alldata)
+        $("#A1")[0].innerText = data.text1;
+        $("#A2")[0].innerText = data.text2;
+        $("#A3")[0].innerText = data.text3;
+        $("#A4").val(input = A4) = data.text4;
+        $("#B1")[0].innerText = data.text6;
+        $("#B2")[0].innerText = data.text7;
+        $("#B3")[0].innerText = data.text8;
+        $("#B4").val(B4) = data.text9;
+        $("#text_area").val(alldata);
     };
+    // 賞味期限から本日の日付を引いて残日数を算出できるはず
+    const getDiffDate = (fromDate, toDate) => Math.round(Math.abs((toDate.getTime() - fromDate.getTime()) / (24 * 60 * 60 * 1000)));
+    const text4 = $("#A4").val();
+    console.log(text4)
+    const today = new Date();
+    console.log(today.toLocaleDateString());
+
+    console.log(getDiffDate(new Date(), new Date(text4)));
+
+
+
+
+// // 予備での日付算出コード
+//     // 日付算出方法
+//     function myFormDate(tYear, tMonth, tDay) {
+//         // 現在日時を数値に変換
+//         const nowDate = new Date();
+//         const dnumNow = nowDate.getTime();
+
+//         // 指定日時を数値に変換
+//         const targetDate = new Date(tYear, tMonth - 1, tDay);  // 月の値は 1 を引く必要がある点に注意。(※1月は0、2月は1、……12月は11)
+//         const dnumTarget = targetDate.getTime();
+
+//         // 引き算して残日数を計算
+//         const diffMSec = dnumTarget - dnumNow;
+//         const diffDays = diffMSec / (1000 * 60 * 60 * 24);
+//         const showDays = Math.ceil(diffDays); // 小数点以下を切り上げる
+
+//         // 表示
+//         var Msg;
+//         if (showDays >= 0) {
+//             Msg = "指定日まであと " + showDays + "日です。";
+//         }
+//         else {
+//             Msg = "指定日は " + (showDays * -1) + "日前に過ぎました。";
+//         }
+//         return Msg;
+//     }
+
+
+//     // $(function () {
+
+//     //     myD = new Date();                              // 現在時刻 取得
+
+//     //     myNextYear = new Date(2023, 2, 20);     // リニューアルオープン日の経過秒を取得。月は実際より-1する（例・３月の場合　3-1=2）
+
+//     //     myMsec = myNextYear.getTime() - myD.getTime();
+
+//     //     myNextDay = Math.floor(myMsec / (1000 * 60 * 60 * 24)); // カウントダウン用 '日' 取得
+
+//     //     $("#myFormDate").html(myNextDay + 1);
+
+//     // });
+
 
 
 </script>
-
-
-
-<!-- <link rel="stylesheet" href="https://bossanova.uk/jexcel/v4/jexcel.css" /> -->
-<!-- <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" /> -->
-
-<!-- <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" />
- -->
-
-<!-- <script src="https://bossanova.uk/jexcel/v4/jexcel.js"></script>
-<script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
-
-
-const table = document.getElementById('mytable');
-
-jexcel(table, {
-data: [['']],
-columns: [
-{ type: 'text', title: 'JAN', width: 200 },
-{ type: 'text2', title: '商品名', width: 200 },
-{ type: 'calender', title: '賞味期限', width: 200 },
-{ type: 'checkbox', title: 'チェック', width: 120 },
-]
-});
-const data = { table: table, jexcelData: jexcelData }; -->

@@ -1,4 +1,4 @@
-# 賞味期限管理（まだ未完成）
+# 賞味期限管理（進んだものの完成できず）
 
 
 
@@ -12,13 +12,18 @@
 ## 工夫した点
 
   ・エクセルっぽい見た目で一覧としてみれて、かつ入力
-  でき、保存できるように
+  でき、保存できるように。
+  ・日付の入力を簡単にできるようにカレンダー形式に
+　・開いた当日の日付
 
 ## 苦戦した点
 
   ・inputやtext-areaではなく、入力可能なものにするため
   そしてそれをlocal strageに保存できるようにするために
   想定以上に時間がかかりました。
+  ・カレンダー入力したものをlocal strageに保存するための
+  コードがエラー続きでそこで足止め中
+  ・賞味期限から当日日付を引いて30日未満の商品なら商品情報をテキストエリアに表示して賞味期限が近いよ！というテキストも表示できるようにしたかったのだがここの数値計算のコードもうまく働かず・・・
 
 ## 参考にした web サイトなど
 ・contenteditable属性について
@@ -29,3 +34,7 @@ https://qiita.com/Shiratsuki_Kurom/items/ecc9ff63519e0fb33941
 
 ・innerHTMLについて
 https://wp-p.info/tpl_rep.php?cat=js-biginner&fl=r13
+・カレンダー入力について
+https://www.sejuku.net/blog/44165
+・Val（）の取得について
+https://www.sejuku.net/blog/45297?fbclid=IwAR1XWdglW4yH8sLF4NyCoavLEByBUmi0-kkgJBKvStRzTRxjvNGafiqrnb8
