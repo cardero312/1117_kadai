@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <h1>賞味期限</h1>
+        <h1>賞味期限管理</h1>
     </header>
     <main>
 
@@ -91,7 +91,7 @@
         <textarea id="text_area"></textarea>
 
 
-        <!-- <!-- <div id="" <p>賞味期限まであと<span id="myFormDate"></span>日です。
+        <!-- <div id="" <p>賞味期限まであと<span id="myFormDate"></span>日です。
             セール処理を！</p> -->
         <!-- <input type="button" value=#a1 "の賞味期限は?" onclick="alert( myFormDate(2016,12,31) );">
         <input type="button" value="今日から2022年12月31日までの日数は？" onclick="alert( myFormDate(2022,12,31) );">
@@ -104,8 +104,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"
+    integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
 
 
     $(function () {
@@ -115,13 +118,38 @@
         var d = now.getDate();
 
         $("#date").text(y + "年" + m + "月" + d + "日");
+        $("#A4").datepicker({ dateFormat: "yy-mm-dd", });
+        $("#B4").datepicker({ dateFormat: "yy-mm-dd", });
+        $("#C4").datepicker({ dateFormat: "yy-mm-dd", });
+        $("#D4").datepicker({ dateFormat: "yy-mm-dd", });
+        $("#E4").datepicker({ dateFormat: "yy-mm-dd", });
+
+        // $("#A4").datepicker({ dateFormat: "yy/mm/dd", });
+        // $("#B4").datepicker({ dateFormat: "yy/mm/dd", });
+        // $("#C4").datepicker({ dateFormat: "yy/mm/dd", });
+        // $("#D4").datepicker({ dateFormat: "yy/mm/dd", });
+        // $("#E4").datepicker({ dateFormat: "yy/mm/dd", });
+
+         const text4 = $("#A4").val();
+        const today = new Date();
+        const newdate = moment(today);
+        const itemdate = moment(text4);
+        console.log(newdate, itemdate);
+
+        console.log(newdate.add(1, 'months').isSameOrAfter(itemdate, 'month'));
+
+
+
+        if (newdate.add(1, 'months').isSameOrAfter(itemdate, 'month')) {
+            $("#text_area").val("賞味期限1か月切ったよ！")
+            console.log("あーーー");
+        } else { $("#text_area").val(""); }
+        
+
+
+
     });
 
-    $("#A4").datepicker({ dateFormat: "yy/mm/dd", });
-    $("#B4").datepicker({ dateFormat: "yy/mm/dd", });
-    $("#C4").datepicker({ dateFormat: "yy/mm/dd", });
-    $("#D4").datepicker({ dateFormat: "yy/mm/dd", });
-    $("#E4").datepicker({ dateFormat: "yy/mm/dd", });
 
 
 
@@ -227,24 +255,25 @@
         $("#A1")[0].innerText = data.text1;
         $("#A2")[0].innerText = data.text2;
         $("#A3")[0].innerText = data.text3;
-        $("#A4").val(input = A4) = data.text4;
+        $("#A4").val(data.text4);
         $("#B1")[0].innerText = data.text6;
         $("#B2")[0].innerText = data.text7;
         $("#B3")[0].innerText = data.text8;
-        $("#B4").val(B4) = data.text9;
-        $("#text_area").val(alldata);
+        $("#B4").val(data.text9);
+
+        // $("#text_area").val(alldata);
     };
     // 賞味期限から本日の日付を引いて残日数を算出できるはず
-    const getDiffDate = (fromDate, toDate) => Math.round(Math.abs((toDate.getTime() - fromDate.getTime()) / (24 * 60 * 60 * 1000)));
-    const text4 = $("#A4").val();
-    console.log(text4)
-    const today = new Date();
-    console.log(today.toLocaleDateString());
+    // const getDiffDate = (fromDate, toDate) => Math.round(Math.abs((toDate.getTime() - fromDate.getTime()) / (24 * 60 * 60 * 1000)));
+    // const text4 = $("#A4").val();
+    // console.log(text4)
+    // const today = new Date();
+    // console.log(today.toLocaleDateString());
 
-    console.log(getDiffDate(new Date(), new Date(text4)));
+    // console.log(getDiffDate(new Date(), new Date(text4)));
 
 
-
+   
 
 // // 予備での日付算出コード
 //     // 日付算出方法
